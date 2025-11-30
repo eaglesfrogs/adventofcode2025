@@ -6,5 +6,5 @@ Login to adventofcode.com and get the session token from the browser's dev conso
 
 Execute... `go run main.go -day 1`
 
-Input data will be downloaded to a local directory `./.input` and it will run each the puzzle for the specified day.
+Input data will be downloaded to a local directory `./.input` and it will run each puzzle for the specified day.
 

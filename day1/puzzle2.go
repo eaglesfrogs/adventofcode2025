@@ -28,6 +28,8 @@ func (p *Puzzle) Puzzle2() error {
 		}
 
 		originalDial := dial
+		laps := dist / 100
+		dist = dist % 100
 
 		if dir == "L" {
 			dial = dial - dist
@@ -36,7 +38,7 @@ func (p *Puzzle) Puzzle2() error {
 		}
 
 		// some of the rotations are >100
-		for dial >= 100 {
+		if dial >= 100 {
 			dial = dial - 100
 
 			if dial != 0 {
@@ -49,11 +51,13 @@ func (p *Puzzle) Puzzle2() error {
 			dial = 100 + dial
 		}
 
-		for dial < 0 {
+		if dial < 0 {
 			// add a negtive to 100 to subtract
 			dial = 100 + dial
 			zeroCount++
 		}
+
+		zeroCount += laps
 
 		if dial == 0 {
 			zeroCount++

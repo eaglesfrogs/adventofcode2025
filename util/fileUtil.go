@@ -14,7 +14,7 @@ func ReadFileLines(filePath string) ([]string, error) {
 
 	scanner := bufio.NewScanner(file)
 
-	lines := make([]string, 10)
+	lines := make([]string, 0)
 
 	for scanner.Scan() {
 		line := scanner.Text()

@@ -8,6 +8,20 @@ import (
 	"github.com/eaglesfrogs/adventofcode2025/util"
 )
 
+var Factors = map[int][]int{
+	2:  {1},
+	3:  {1},
+	4:  {1, 2},
+	5:  {1},
+	6:  {1, 2, 3},
+	7:  {1},
+	8:  {1, 2, 4},
+	9:  {1, 3},
+	10: {1, 2, 5},
+	11: {1},
+	12: {1, 2, 3, 4, 6},
+}
+
 func (p *Puzzle) Puzzle2() error {
 	lines, err := util.ReadFileLines(p.InputFile)
 	if err != nil {
@@ -30,19 +44,22 @@ func (p *Puzzle) Puzzle2() error {
 		}
 
 		for num := lower; num <= upper; num++ {
-			// numStr := strconv.Itoa(num)
+			if num < 10 {
+				continue
+			}
 
-			// // middly digits don't count.  so get rid of odd length numbers
-			// if len(numStr)%2 == 1 {
-			// 	continue
-			// }
+			numStr := strconv.Itoa(num)
+			factors := Factors[len(numStr)]
 
-			// numHalf := numStr[0 : len(numStr)/2]
+			for _, factor := range factors {
+				prefix := numStr[0:factor]
+				repeatedStr := strings.Repeat(prefix, len(numStr)/factor)
 
-			// if strings.HasSuffix(numStr, numHalf) {
-			// 	log.Printf("Range %d-%d hash invalid ID %d", lower, upper, num)
-			// 	invalidTotal += num
-			// }
+				if repeatedStr == numStr {
+					invalidTotal += num
+					break
+				}
+			}
 		}
 	}
 

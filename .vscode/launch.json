@@ -12,7 +12,7 @@
             "mode": "auto",
             "cwd": "${workspaceFolder}",
             "program": "${workspaceFolder}/main.go",
-            "args": ["-day", "4"]
+            "args": ["-day", "5"]
         }
     ]
 }

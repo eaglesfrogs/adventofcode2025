@@ -23,6 +23,7 @@ import (
 
 func main() {
 	day := flag.Int("day", 1, "Day of the Advent of Code challenge")
+	skip1 := flag.Bool("skip1", false, "Skip Puzzle 1")
 	flag.Parse()
 
 	if *day < 1 || *day > 12 {
@@ -71,10 +72,12 @@ func main() {
 		log.Fatalf("Day %d not implemented yet.", *day)
 	}
 
-	log.Printf("Executing Puzzle 1 for day %d", *day)
-	err = puzzle.Puzzle1()
-	if err != nil {
-		log.Fatalf("Error executing Puzzle 1 for day %d: %v", *day, err)
+	if !*skip1 {
+		log.Printf("Executing Puzzle 1 for day %d", *day)
+		err = puzzle.Puzzle1()
+		if err != nil {
+			log.Fatalf("Error executing Puzzle 1 for day %d: %v", *day, err)
+		}
 	}
 	log.Printf("Executing Puzzle 2 for day %d", *day)
 	err = puzzle.Puzzle2()
